@@ -9,8 +9,16 @@ import dessertImg from './../../../assets/menu/dessert-bg.jpeg';
 import pizzaImg from './../../../assets/menu/pizza-bg.jpg';
 import saladImg from './../../../assets/menu/salad-bg.jpg';
 import soupImg from './../../../assets/menu/soup-bg.jpg';
+import { useNavigation } from 'react-router-dom';
+import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
 
 const Menu = () => {
+    const navigation = useNavigation();
+
+    if(navigation.state === 'loading') {
+        return <LoadingSpinner />
+    }
+
     const [menu] = useMenu();
     const offered = menu?.filter(item => item.category === 'offered');
     const desserts = menu?.filter(item => item.category === 'dessert');

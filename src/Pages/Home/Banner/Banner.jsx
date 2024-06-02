@@ -8,8 +8,15 @@ import banner3 from './../../../assets/home/03.png'
 import banner4 from './../../../assets/home/04.jpg'
 import banner5 from './../../../assets/home/05.png'
 import banner6 from './../../../assets/home/06.png'
+import { useNavigation } from 'react-router-dom';
+import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
 
 const Banner = () => {
+    const navigation = useNavigation()
+    // console.log(navigation.state);
+    if (navigation.state === 'loading') {
+        return <LoadingSpinner />
+    }
     return (
         <Carousel>
             <div>

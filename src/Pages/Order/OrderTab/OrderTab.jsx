@@ -4,10 +4,18 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import FoodCard from '../../../components/FoodCard/FoodCard';
+import { useNavigation } from 'react-router-dom';
+import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
 
 // TO DO
 
 const OrderTab = ({ items }) => {
+    const navigation = useNavigation();
+
+    if(navigation.state === 'loading') {
+        return <LoadingSpinner />
+    }
+
     const pagination = {
         clickable: true,
         renderBullet: function (index, className) {

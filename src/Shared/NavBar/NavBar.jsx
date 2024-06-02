@@ -1,11 +1,25 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut().then(() => { console.log('User Logout') }).catch(error => console.log(error.message))
+    }
+
     const navOptions = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/menu'>Our Menu</NavLink></li>
-        <li><NavLink to='/order/salad'>Order Food</NavLink></li>
+        <li><NavLink to='/' className={({ isActive }) => isActive && 'bg-orange-600'}>Home</NavLink></li>
+        <li><NavLink to='/menu' className={({ isActive }) => isActive && 'bg-orange-600'}>Our Menu</NavLink></li>
+        <li><NavLink to='/order/salad' className={({ isActive }) => isActive && 'bg-orange-600'}>Order Food</NavLink></li>
+        <li><NavLink to='/private' className={({ isActive }) => isActive && 'bg-orange-600'}>Private</NavLink></li>
+        {user ? <>
+            <li><Link onClick={handleLogout} >LogOut</Link ></li>
+            <img className='w-[40px] rounded-full' src={user?.photoURL} title={user?.displayName} alt={user?.displayName} />
+        </> : <>
+            <li><NavLink to='/login' className={({ isActive }) => isActive && 'bg-orange-600'}>Login</NavLink></li>
+        </>}
     </>
     return (
         <>
