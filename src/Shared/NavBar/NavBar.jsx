@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import { FaShoppingCart } from 'react-icons/fa';
+import useCart from '../../hooks/useCart';
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart();
 
     const handleLogout = () => {
         logOut().then(() => { console.log('User Logout') }).catch(error => console.log(error.message))
@@ -13,10 +16,13 @@ const NavBar = () => {
         <li><NavLink to='/' className={({ isActive }) => isActive && 'bg-orange-600'}>Home</NavLink></li>
         <li><NavLink to='/menu' className={({ isActive }) => isActive && 'bg-orange-600'}>Our Menu</NavLink></li>
         <li><NavLink to='/order/salad' className={({ isActive }) => isActive && 'bg-orange-600'}>Order Food</NavLink></li>
-        <li><NavLink to='/private' className={({ isActive }) => isActive && 'bg-orange-600'}>Private</NavLink></li>
+        <li><Link to='/private'>
+            <FaShoppingCart />
+            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+        </Link></li>
         {user ? <>
             <li><Link onClick={handleLogout} >LogOut</Link ></li>
-            <img className='w-[40px] rounded-full' src={user?.photoURL} title={user?.displayName} alt={user?.displayName} />
+            <img className='w-[40px] h-[40px] rounded-full' src={user?.photoURL} title={user?.displayName} alt={user?.displayName} />
         </> : <>
             <li><NavLink to='/login' className={({ isActive }) => isActive && 'bg-orange-600'}>Login</NavLink></li>
         </>}

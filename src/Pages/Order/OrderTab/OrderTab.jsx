@@ -7,7 +7,7 @@ import FoodCard from '../../../components/FoodCard/FoodCard';
 import { useNavigation } from 'react-router-dom';
 import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
 
-// TO DO
+// TO DO: Pagination Order Food Page
 
 const OrderTab = ({ items }) => {
     const navigation = useNavigation();
