@@ -16,7 +16,7 @@ const NavBar = () => {
         <li><NavLink to='/' className={({ isActive }) => isActive && 'bg-orange-600'}>Home</NavLink></li>
         <li><NavLink to='/menu' className={({ isActive }) => isActive && 'bg-orange-600'}>Our Menu</NavLink></li>
         <li><NavLink to='/order/salad' className={({ isActive }) => isActive && 'bg-orange-600'}>Order Food</NavLink></li>
-        <li><Link to='/private'>
+        <li><Link to='/dashboard/myCart'>
             <FaShoppingCart />
             <div className="badge badge-secondary">+{cart?.length || 0}</div>
         </Link></li>

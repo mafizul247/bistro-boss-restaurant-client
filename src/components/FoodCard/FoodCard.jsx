@@ -23,6 +23,7 @@ const FoodCard = ({ item }) => {
         const { name, recipe, image, price } = item;
         if (user && user?.email) {
             const AddItem = { menuItemId: _id, name, price, image, recipe, email: user.email };
+            // console.log(AddItem);
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {
@@ -32,9 +33,9 @@ const FoodCard = ({ item }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    refetch();
                     // console.log(data);
                     if (data.insertedId) {
+                        refetch();
                         console.log(data);
                         toast(`${name} has been add to cart`);
                     }

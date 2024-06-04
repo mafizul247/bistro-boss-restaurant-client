@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.admin-container {
+    @apply m-4 md:m-8 p-4
+}
