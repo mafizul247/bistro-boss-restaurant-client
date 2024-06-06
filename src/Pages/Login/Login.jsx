@@ -5,6 +5,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
     const navigation = useNavigation();
@@ -91,8 +92,9 @@ const Login = () => {
                                 <input disabled={disabled} type="submit" className="btn btn-primary" value="Login" />
                             </div>
                         </form>
+                        <SocialLogin />
                         <div >
-                            <p className='text-center'>New here? <Link to='/signup' className='text-blue-500 hover:text-blue-800 hover:underline'>Create a New Account</Link> </p>
+                            <p className='text-center'>New here?<Link to='/signup' state={location.state} className='text-blue-500 hover:text-blue-800 hover:underline'>Create a New Account</Link> </p>
                         </div>
                     </div>
                 </div>

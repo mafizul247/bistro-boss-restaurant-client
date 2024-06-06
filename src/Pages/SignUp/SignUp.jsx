@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate, useNavigation } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const SignUp = () => {
     const navigation = useNavigation();
@@ -13,21 +14,37 @@ const SignUp = () => {
 
     const { createUser, updateUserProfile, setReload } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
         createUser(data.email, data.password)
             .then(result => {
                 const logedUser = result.user;
                 // console.log(logedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        setReload(true)
-                        navigate('/');
-                        toast(`${logedUser.displayName} Registration Succefully`)
-                        // Logout user and redirect navigate('/login')
+                        const savedUser = { name: data.name, email: data.email, photo: data.photoURL }
+                        fetch('http://localhost:5000/user', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(savedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                                if (data.insertedId) {
+                                    setReload(true)
+                                    navigate(from, { replace: true });
+                                    toast(`${logedUser.displayName} Registration Succefully`)
+                                    // Logout user and redirect navigate('/login')
+                                }
+                            })
                     }).catch(error => console.log(error.message))
                 reset();
             })
@@ -81,6 +98,7 @@ const SignUp = () => {
                                 <input type="submit" className="btn btn-primary" value="Sign Up" />
                             </div>
                         </form>
+                        <SocialLogin />
                         <div >
                             <p className='text-center'>Already registered? <Link to='/login' className='text-blue-500 hover:text-blue-800 hover:underline'>Go to log in</Link> </p>
                         </div>
