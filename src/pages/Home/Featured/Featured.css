@@ -1,0 +1,4 @@
+.featured-img {
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./../../../assets/home/chef-service.jpg');
+    background-size: cover;
+}
