@@ -41,14 +41,14 @@ const MyCart = () => {
     }
 
     return (
-        <div>
+        <div className='p-8 bg-[#F6F6F6] min-h-[100vh]'>
             <Helmet>
                 <title>Bistro Boss || My Cart</title>
             </Helmet>
             <div className='mb-8'>
                 <SectionTitle subHeading={'My Cart'} heading={'ADD MORE?'} />
             </div>
-            <div className='bg-white py-4'>
+            <div className='bg-white py-4 rounded-md'>
                 <div className='uppercase flex justify-around items-center mb-8'>
                     <h3 className='text-xl font-bold'>Total Order {cart?.length}</h3>
                     <h3 className='text-xl font-bold'>Total Price: {total}</h3>

@@ -28,7 +28,7 @@ const Testimonials = () => {
                     }}
                     modules={[Autoplay, Navigation]}
                     className="mySwiper">
-                    {reviews?.map(review => <SwiperSlide>
+                    {reviews?.map(review => <SwiperSlide key={review._id}>
                         <div className='px-16 py-8 text-center space-y-3'>
                             <div className='flex justify-center'>
                                 <Rating

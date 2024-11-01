@@ -10,7 +10,7 @@ const AdminRoute = ({ children }) => {
 
     if (loading && isAdminLoading) {
         return <div className='min-h-[90vh] flex justify-center items-center'>
-            <div class="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
+            <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
         </div>
     }
 
@@ -18,7 +18,7 @@ const AdminRoute = ({ children }) => {
         return children;
     }
 
-    return <Navigate to='/login' state={{ from: location }} replace />;
+    return <Navigate to='/' state={{ from: location }} replace />;
 };
 
 export default AdminRoute;

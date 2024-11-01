@@ -8,6 +8,7 @@ import useCart from '../../../hooks/useCart';
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [cart] = useCart([]);
+    // console.log(user?.photoURL);
 
     const handleLogOut = () => {
         logOut()
@@ -27,7 +28,7 @@ const NavBar = () => {
                         <div className="badge badge-secondary">+{cart?.length || 0}</div>
                     </Link>
                 </li>
-                <img title={user.displayName} className='mx-2 h-10 w-10 rounded-full' src={user.photoURL} alt={user.name} />
+                {user.photoURL && <img title={user?.displayName} className='mx-2 h-10 w-10 rounded-full' src={user?.photoURL} alt={user?.name} />}
                 <li><button onClick={handleLogOut}>Logout</button></li>
             </> :
                 <><li><Link to='/login'>Login</Link></li></>

@@ -11,6 +11,7 @@ const Dashboard = () => {
     const [cart] = useCart([]);
     // console.log(cart);
     const [isAdmin] = useAdmin();
+    // console.log(isAdmin);
 
     const handleLogOut = () => {
         logOut()
@@ -20,12 +21,12 @@ const Dashboard = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content p-8 bg-[#F6F6F6]">
+            <div className="drawer-content bg-white">
+                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
+                    Open Menu
+                </label>
                 {/* Page content here */}
                 <Outlet />
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
-                    Open drawer
-                </label>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -40,8 +41,8 @@ const Dashboard = () => {
                     {isAdmin ? <>
                         <li><Link to='/'><FaHome /> Admin Home</Link> </li>
                         <li><NavLink to='/'><FaCalendarAlt /> Reservation</NavLink> </li>
-                        <li><NavLink to='/'><FaUtensils /> Add Items</NavLink> </li>
-                        <li><NavLink to='/'><FaBars /> Manage Items</NavLink> </li>
+                        <li><NavLink to='/dashboard/add-item'><FaUtensils /> Add Items</NavLink> </li>
+                        <li><NavLink to='/dashboard/manage-items'><FaBars /> Manage Items</NavLink> </li>
                         <li><NavLink to='/'><FaBook /> Manage Bookings</NavLink> </li>
                         <li><NavLink to='/dashboard/users'><FaUsers /> Manage Users</NavLink> </li>
                     </> : <>

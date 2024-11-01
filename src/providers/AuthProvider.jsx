@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             console.log('Auth User', currentUser);
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', { email: currentUser.email })
+                axios.post('http://localhost:5000/jwt', { email: currentUser?.email })
                     .then(data => {
                         const token = data.data.token;
                         // console.log(token);
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
             return unsubscribe();
         }
 
-    }, [control]);
+    }, [control, setLoading]);
 
     const authInfo = {
         user,

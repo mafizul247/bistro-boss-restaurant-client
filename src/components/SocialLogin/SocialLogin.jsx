@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const SocialLogin = () => {
-    const { googleLogin} = useContext(AuthContext);
+    const { googleLogin, setControl} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -15,7 +15,7 @@ const SocialLogin = () => {
             .then(result => {
                 const loggedUser = result.user;
                 // console.log(loggedUser);
-
+                setControl(true);
                 const saveUser = { name: loggedUser.displayName, photoURL: loggedUser.photoURL, email: loggedUser.email, role: 'user' };
                 // console.log(saveUser);
 
