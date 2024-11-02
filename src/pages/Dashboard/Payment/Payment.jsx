@@ -10,7 +10,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gatway_PK);
 // const stripePromise = loadStripe('pk_test_51NK25jBE9y9E9r8tMhn4oGgHbMTnkZdvRj328oymRfppbmkZjo7FhzDx6k1zaIaYfvlkli7GEVIb8LyHauDI7LiT0061qdNNBI');
 
 const Payment = () => {
-    const [cart] = useCart([]);
+    const [cart, refetch] = useCart([]);
     const total = cart?.reduce((sum, item) => sum + item.price, 0);
     const price = parseFloat(total.toFixed(2));
     // console.log(price);
@@ -30,7 +30,7 @@ const Payment = () => {
             <div className='bg-white p-6 rounded-md'>
                 <h2 className='text-xl font-bold uppercase mb-4'>Pay Total Amount: <span className='text-orange-500'>${price}</span></h2>
                 <Elements stripe={stripePromise} >
-                    <CheckoutForm price={price} />
+                    <CheckoutForm cart={cart} refetch={refetch} price={price} />
                 </Elements>
             </div>
         </div>

@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import { toast } from 'react-toastify';
-import useCart from '../../../hooks/useCart';
+// import useCart from '../../../hooks/useCart';
 import { useNavigate } from 'react-router-dom';
 // import './CheckoutForm.css'
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ cart, refetch, price }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
-    const [cart, refetch] = useCart();
+    // const [cart, refetch] = useCart();
     const [axiosSecure] = useAxiosSecure();
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState('');
@@ -87,10 +87,10 @@ const CheckoutForm = ({ price }) => {
                 email: user?.email,
                 name: user?.displayName,
                 transactionId,
-                pirce: parseFloat(paymentIntent.amount / 100),
+                price: parseFloat(paymentIntent.amount / 100),
                 quantity: cart?.length,
                 cartItemId: cart?.map(item => item._id),
-                menuItems: cart?.map(item => item._menuItemId),
+                menuItems: cart?.map(item => item.menuItemId),
                 ItemName: cart?.map(item => item.name),
                 date: new Date(),
                 orderStatus: 'service pending'

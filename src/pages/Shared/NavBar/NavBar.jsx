@@ -4,10 +4,12 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import { toast } from 'react-toastify';
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from '../../../hooks/useCart';
+import useAdmin from '../../../hooks/useAdmin';
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [cart] = useCart([]);
+    const [isAdmin] = useAdmin();
     // console.log(user?.photoURL);
 
     const handleLogOut = () => {
@@ -20,14 +22,15 @@ const NavBar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/order/dessert'>Order Food</NavLink></li>
+        <li><NavLink to={`${isAdmin ? '/dashboard/admin-home' : '/dashboard/user-home'}`}>Dashboard</NavLink></li>
         {
             user ? <>
-                <li className='rounded-md bg-gray-700 ml-2'>
+                {!isAdmin && <li className='rounded-md bg-gray-700 ml-2'>
                     <Link to='/dashboard/mycart' >
                         <FaShoppingCart className='' />
                         <div className="badge badge-secondary">+{cart?.length || 0}</div>
                     </Link>
-                </li>
+                </li>}
                 {user.photoURL && <img title={user?.displayName} className='mx-2 h-10 w-10 rounded-full' src={user?.photoURL} alt={user?.name} />}
                 <li><button onClick={handleLogOut}>Logout</button></li>
             </> :
