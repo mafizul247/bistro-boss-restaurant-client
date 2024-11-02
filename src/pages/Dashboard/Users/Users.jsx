@@ -68,7 +68,7 @@ const Users = () => {
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
-                                <th>Action</th>
+                                {/* <th>Action</th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -92,9 +92,9 @@ const Users = () => {
                                     <td>{user?.role === "admin" ? <button className="btn btn-success">Admin</button> :
                                         <button onClick={() => handleMakeAdmin(user)} className="btn bg-orange-500 ">{user?.role == 'user' && 'User'} </button>
                                     }</td>
-                                    <td>
+                                    {/* <td>
                                         <button onClick={() => handleDelete(user)} className="btn bg-red-500 "><FaTrashAlt className='text-xl text-white' /> </button>
-                                    </td>
+                                    </td> */}
                                 </tr>)
                             }
                         </tbody>

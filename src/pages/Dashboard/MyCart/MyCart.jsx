@@ -5,10 +5,12 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
     const [cart, refetch] = useCart([]);
     const total = cart?.reduce((sum, item) => sum + item.price, 0);
+    const totalPrice = parseFloat(total.toFixed(2));
 
     const handleDelete = (item) => {
         Swal.fire({
@@ -40,6 +42,10 @@ const MyCart = () => {
         });
     }
 
+    const handleError = () => {
+        toast.error('Please add items');
+    }
+
     return (
         <div className='p-8 bg-[#F6F6F6] min-h-[100vh]'>
             <Helmet>
@@ -51,8 +57,10 @@ const MyCart = () => {
             <div className='bg-white py-4 rounded-md'>
                 <div className='uppercase flex justify-around items-center mb-8'>
                     <h3 className='text-xl font-bold'>Total Order {cart?.length}</h3>
-                    <h3 className='text-xl font-bold'>Total Price: {total}</h3>
-                    <button className='btn bg-[#D1A054] text-white btn-sm'>PAY</button>
+                    <h3 className='text-xl font-bold'>Total Price: {totalPrice && totalPrice}</h3>
+                    {totalPrice > 0 ? <><Link to='/dashboard/payment'>
+                        <button className='btn bg-[#D1A054] text-white btn-sm'>PAY</button>
+                    </Link></> : <button onClick={handleError} className='btn bg-[#D1A054] text-white btn-sm disabled'>PAY</button>}
                 </div>
                 <div className="overflow-x-auto">
                     <table className="table">

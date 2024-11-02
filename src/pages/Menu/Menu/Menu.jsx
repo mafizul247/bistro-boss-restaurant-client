@@ -14,12 +14,12 @@ import drinksImg from './../../../assets/menu/banner3.jpg'
 
 const Menu = () => {
     const [menu] = useMenu();
-    const desserts = menu.filter(item => item.category === 'dessert');
-    const pizzas = menu.filter(item => item.category === 'pizza');
-    const salads = menu.filter(item => item.category === 'salad');
-    const soups = menu.filter(item => item.category === 'soup');
-    const drinks = menu.filter(item => item.category === 'drinks');
-    const offered = menu.filter(item => item.category === 'offered');
+    const desserts = menu?.filter(item => item.category === 'dessert');
+    const pizzas = menu?.filter(item => item.category === 'pizza');
+    const salads = menu?.filter(item => item.category === 'salad');
+    const soups = menu?.filter(item => item.category === 'soup');
+    const drinks = menu?.filter(item => item.category === 'drinks');
+    const offered = menu?.filter(item => item.category === 'offered');
 
     return (
         <div>
