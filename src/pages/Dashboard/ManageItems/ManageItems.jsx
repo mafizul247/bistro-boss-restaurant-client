@@ -6,6 +6,7 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const ManageItems = () => {
     const [menu, refetch] = useMenu();
@@ -48,7 +49,7 @@ const ManageItems = () => {
                 </div>
                 <div className='bg-white p-4 rounded-md'>
                     <div className='uppercase'>
-                        <h3 className='text-xl font-bold'>Total Items {menu?.length}</h3>
+                        <h3 className='text-xl font-bold'>Total Items: {menu?.length}</h3>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="table">
@@ -82,7 +83,9 @@ const ManageItems = () => {
                                         <td>{item?.name}</td>
                                         <td>{item?.price}</td>
                                         <td>
-                                            <button onClick={() => handleUpdate(item)} className="btn bg-yellow-600 "><FaEdit className='text-xl text-white' /> </button>
+                                            <button className="btn bg-yellow-600 "><Link to={`/dashboard/update-item/${item._id}`}>
+                                            <FaEdit className='text-xl text-white' /> 
+                                            </Link> </button>
                                         </td>
                                         <td>
                                             <button onClick={() => handleDelete(item)} className="btn bg-red-500 "><FaTrashAlt className='text-xl text-white' /> </button>

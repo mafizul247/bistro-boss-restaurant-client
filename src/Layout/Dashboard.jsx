@@ -43,7 +43,7 @@ const Dashboard = () => {
                         <li><NavLink to='/'><FaCalendarAlt /> Reservation</NavLink> </li>
                         <li><NavLink to='/dashboard/add-item'><FaUtensils /> Add Items</NavLink> </li>
                         <li><NavLink to='/dashboard/manage-items'><FaBars /> Manage Items</NavLink> </li>
-                        <li><NavLink to='/'><FaBook /> Manage Bookings</NavLink> </li>
+                        <li><NavLink to='/dashboard/manage-bookings'><FaBook /> Manage Bookings</NavLink> </li>
                         <li><NavLink to='/dashboard/users'><FaUsers /> Manage Users</NavLink> </li>
                     </> : <>
                         <li><NavLink to='/dashboard/user-home'><FaHome /> User Home</NavLink> </li>

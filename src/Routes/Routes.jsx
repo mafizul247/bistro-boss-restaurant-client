@@ -16,6 +16,8 @@ import ManageItems from '../pages/Dashboard/ManageItems/ManageItems';
 import Payment from '../pages/Dashboard/Payment/Payment';
 import UserHome from '../pages/Dashboard/UserHome/UserHome';
 import AdminHome from '../pages/Dashboard/AdminHome/AdminHome';
+import UpdateItem from '../pages/Dashboard/UpdateItem/UpdateItem';
+import ManageBookings from '../pages/Dashboard/ManageBookings/ManageBookings';
 
 const router = createBrowserRouter([
     {
@@ -77,6 +79,14 @@ const router = createBrowserRouter([
             {
                 path: 'manage-items',
                 element: <AdminRoute><ManageItems /></AdminRoute>
+            },
+            {
+                path: 'update-item/:id',
+                element: <AdminRoute><UpdateItem /></AdminRoute>
+            },
+            {
+                path: 'manage-bookings',
+                element: <AdminRoute><ManageBookings /></AdminRoute>
             }
         ]
     }
